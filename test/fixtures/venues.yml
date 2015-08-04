@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  address: MyText
+  opens_at: 2015-08-04 15:37:38
+  closes_at: 2015-08-04 15:37:38
+  capacity: 1
+  is_accessible: false
+  user_id: 
+  description: MyText
+  latitude: 1.5
+  longitude: 1.5
+
+two:
+  address: MyText
+  opens_at: 2015-08-04 15:37:38
+  closes_at: 2015-08-04 15:37:38
+  capacity: 1
+  is_accessible: false
+  user_id: 
+  description: MyText
+  latitude: 1.5
+  longitude: 1.5

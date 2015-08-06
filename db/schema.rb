@@ -11,32 +11,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150804195637) do
+ActiveRecord::Schema.define(version: 20150806033355) do
 
-  create_table "events", force: true do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "events", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.integer  "series_id"
     t.integer  "venue_id"
     t.datetime "starts_at"
     t.datetime "ends_at"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.string   "meetup_id"
     t.boolean  "archived"
+    t.string   "registration_url"
   end
 
-  add_index "events", ["series_id"], name: "index_events_on_series_id"
-  add_index "events", ["venue_id"], name: "index_events_on_venue_id"
+  add_index "events", ["series_id"], name: "index_events_on_series_id", using: :btree
+  add_index "events", ["venue_id"], name: "index_events_on_venue_id", using: :btree
 
-  create_table "series", force: true do |t|
+  create_table "series", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  create_table "venues", force: true do |t|
+  create_table "sponsors", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "link"
+    t.boolean  "is_current"
+    t.boolean  "is_future"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.text     "message"
+    t.string   "img_url"
+  end
+
+  add_index "sponsors", ["user_id"], name: "index_sponsors_on_user_id", using: :btree
+
+  create_table "venues", force: :cascade do |t|
     t.text     "address"
     t.datetime "opens_at"
     t.datetime "closes_at"
@@ -50,6 +69,6 @@ ActiveRecord::Schema.define(version: 20150804195637) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "venues", ["user_id"], name: "index_venues_on_user_id"
+  add_index "venues", ["user_id"], name: "index_venues_on_user_id", using: :btree
 
 end
